@@ -9,6 +9,7 @@ def make_move(board,i,j,sign): #returns a new board
         return False
         
 def available_moves(board,letter,ordering): #returns a list with all the available moves
+    """ ordering: "shuffle" or "tempo" """
     coordinates = list(range(len(board)))
     possible_moves = []
     for i in coordinates:

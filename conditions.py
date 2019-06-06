@@ -1,6 +1,7 @@
 import numpy as np
 
 def winner(b,sign):
+    """ b: board, sign: "X" or "O" """
     if len(b) == 3:
         for r in range(3):
             if ((b[r,:] == sign).sum() == 3):
@@ -30,6 +31,7 @@ def winner(b,sign):
     return False
 
 def gameover(b):
+    """ b: board """
     if ((b == ' ').sum() == 0):
         return True
     else:

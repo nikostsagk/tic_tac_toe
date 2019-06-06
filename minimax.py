@@ -2,6 +2,10 @@ from conditions import winner, gameover
 from moves import available_moves
 
 def minimax(b, d, maximizing, computer_letter, human_letter, alpha,beta,order,c):
+    """ b: board, d: maximum depth, computer_letter: comp sign, human_letter" human sign, alpha/beta: for alpha beta pruning,
+        order: "shuffle" or "tempo" (shuffles the available moves or sorts them with tempo evaluation),
+        c: counts how many times minimax is called recursively """
+    
     if winner(b,human_letter):
         score = -1000
         return b,score,c

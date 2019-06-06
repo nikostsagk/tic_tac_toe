@@ -1,4 +1,5 @@
 def tempo(b,sign,n):
+    """ See report.pdf to see how tempo move works. It's a good way to start but clearly needs improvement """
     if n == 2:
         counter=0
         for r in range(5):

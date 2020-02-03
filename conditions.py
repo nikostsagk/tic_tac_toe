@@ -1,6 +1,14 @@
 import numpy as np
 
 def winner(b,sign):
+    """ This function checks if the input sign wins the game.
+
+    Args
+        b    : board
+        sign : sign
+    Returns
+        A boolean variable.
+    """
     if len(b) == 3:
         for r in range(3):
             if ((b[r,:] == sign).sum() == 3):
@@ -30,6 +38,13 @@ def winner(b,sign):
     return False
 
 def gameover(b):
+    """ This function checks if the board is full.
+
+    Args
+        b : board
+    Returns
+        A boolean variable.
+    """
     if ((b == ' ').sum() == 0):
         return True
     else:

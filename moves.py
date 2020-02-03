@@ -1,14 +1,64 @@
 import copy
 import numpy as np
 
-def make_move(board,i,j,sign): #returns a new board
-    if board[i,j] == ' ': #You can make this move
-        board[i,j] = sign
-        return board
+def check_valid_move(board):
+    """ This function checks if the input move is a valid move.
+
+    Args
+        board : the current state of the board
+    Returns
+        A list of integers (the inserted move).
+    """
+    case = -1
+    message = 'Choose a valid move:\n(Input row number followed by column number.)\n'
+    while case != 0:
+        row_column = list(input(message))
+
+        try:
+            row = int(row_column[0])
+            col = int(row_column[1])
+        except ValueError:
+            case = 1 # not integer numbers
+            message = 'Input should be integers, choose again:\n(E.g: 21 for r=2, c=1)\n'
+            continue
+
+        if (row in range(len(board))) and (col in range(len(board))):
+            if (board[row, col] == ' '):
+                case = 0 # correct
+                return row_column
+            else:
+                case = 2 # unavailable move
+                message = 'This move is unavailable, choose again:'
+        else:
+            case = 3 # out of range
+            message = 'This move is out of range, choose again:'
+
+def make_move(b,i,j,sign):
+    """ This function fills an empty space on the board with a sign.
+    Args
+        b    : board
+        i    : row
+        j    : column
+        sign : sign
+    Returns
+        The updated board or 'False' if the move is unavailable
+    """
+    if b[i,j] == ' ': #You can make this move
+        b[i,j] = sign
+        return b
     else:
         return False
         
-def available_moves(board,letter,ordering): #returns a list with all the available moves
+def available_moves(board,letter,ordering):
+    """ This function returns the list with the available moves.
+
+    Args
+        board : board
+        letter : the assigning letter
+        ordering : the order 'normal', 'shuffle' or 'tempo'
+    Returns
+        A list of ordered boards.
+    """
     coordinates = list(range(len(board)))
     possible_moves = []
     for i in coordinates:
@@ -39,18 +89,3 @@ def available_moves(board,letter,ordering): #returns a list with all the availab
         return possible_moves
     else: #normal
         return possible_moves
-
-def human_move(b,sign):
-    coordinates = list(range(len(b)))
-    flag1 = True
-    flag2 = True
-    while flag2:
-        inp = list(input('Choose a valid move: '))
-        if (int(inp[0]) and int(inp[1])) in coordinates:
-            flag2 = False
-    while flag1:
-        if make_move(b,int(inp[0]),int(inp[1]),sign) != False:
-            flag1 = False
-            return b
-        print('Unavailable move, choose again.')
-        inp = list(input('Choose an available move: '))

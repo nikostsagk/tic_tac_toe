@@ -1,4 +1,14 @@
 def tempo(b,sign,n):
+    """ This function accepts a board, and quantises the advantage (tempo) of the player.
+        tempo = sum( 2_adjacent_tiles + 2.5 * 3_adjacent_tiles )
+
+    Args
+        b    : board
+        sign : the sign of the player
+        n    : the number of the adjacent tiles to be examined (2 or 3).
+    Returns
+        An int.
+    """
     if n == 2:
         counter=0
         for r in range(5):

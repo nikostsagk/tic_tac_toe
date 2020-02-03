@@ -219,5 +219,3 @@ if __name__=='__main__':
                 terminal_test = True;
                 break
         game.change_turn()
-
-            

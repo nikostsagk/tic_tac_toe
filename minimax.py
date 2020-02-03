@@ -20,7 +20,6 @@ def minimax(board, depth, maximizing, computer_letter, human_letter, alpha, beta
         best_score      : The score of the move
         c               : The recursive counter
     """
-
     if winner(board, human_letter):
         score = -1000
         return board,score,c
@@ -29,9 +28,9 @@ def minimax(board, depth, maximizing, computer_letter, human_letter, alpha, beta
         return board,score,c
     
     if gameover(board):
-        score = 0 #If no winner we don't care aboardout the score
+        score = 0 #If no winner we don't care about the score
         return board,score,c
-    elif (depth == 0 and len(board) == 5): #The only occasion we care aboardout the current score
+    elif (depth == 0 and len(board) == 5): #The only case we care about the current score
         score = -(tempo(board,human_letter,2) + 2.5*tempo(board,human_letter,3)) \
                 +(tempo(board,computer_letter,2) + 2.5*tempo(board,computer_letter,3))
         return board,score,c;
@@ -54,6 +53,7 @@ def minimax(board, depth, maximizing, computer_letter, human_letter, alpha, beta
     else:
         best_score = 1000
         possible_moves = available_moves(board,human_letter,order)
+
     best_move = None
     for move in possible_moves:
         junk, utility,c = minimax(move, depth-1, not(maximizing), computer_letter, human_letter,alpha,beta,order,c+1)
